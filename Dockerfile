@@ -5,7 +5,7 @@ MAINTAINER Yuriy Prokopets <yuriy.prokopets@gmail.com>
 ENV TIMEZONE             Europe/Kiev
 ENV PHP_MEMORY_LIMIT     64M
 ENV WEB_ROOT             /var/www/webgrind
-ENV WEBGRIND_STORAGE_DIR /tmp/webgrind
+ENV WEBGRIND_STORAGE_DIR /var/webgrind
 ENV XDEBUG_OUTPUT_DIR    /tmp
 ENV PORT                 8080
 
@@ -36,10 +36,11 @@ RUN \
     sed -i "s|;*memory_limit =.*|memory_limit = ${PHP_MEMORY_LIMIT}|i" /etc/php5/php.ini && \
     # configure webgrind
     sed -i "s|.*storageDir =.*|static \$storageDir = '${WEBGRIND_STORAGE_DIR}';|i" ${WEB_ROOT}/config.php && \
-    sed -i "s|.*profilerDir =.*|static \$profilerDir = '${XDEBUG_OUTPUT_DIR}';|i" ${WEB_ROOT}/config.php && \
-    sed -i 's/\/usr\/bin\/python/\/usr\/local\/bin\/python/g' ${WEB_ROOT}/config.php
+    sed -i "s|.*profilerDir =.*|static \$profilerDir = '${XDEBUG_OUTPUT_DIR}';|i" ${WEB_ROOT}/config.php
 
 RUN rm -rf /var/cache/apk/* && rm -rf /tmp/*
+
+RUN mkdir -p $WEBGRIND_STORAGE_DIR
 
 WORKDIR $WEB_ROOT
 # make binary 
