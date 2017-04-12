@@ -5,7 +5,7 @@ Docker container for running webgrind xdebug profiler analyzer
 
 ```bash
 docker run -v /tmp:/tmp -p 8080:8080 madman/webgrind
-
+```
 
 ## Configuration
 You can configure following enviromental variables:
@@ -22,3 +22,4 @@ WEBGRIND_STORAGE_DIR="/tmp/webgrind"
 
 # Internal web server port number
 PORT="8080"
+```
