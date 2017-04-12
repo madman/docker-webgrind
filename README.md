@@ -9,6 +9,7 @@ docker run -v /tmp:/tmp -p 8080:8080 madman/webgrind
 
 ## Configuration
 You can configure following enviromental variables:
+
 ```bash
 # Timezone
 TIMEZONE="Europe/Kiev"
